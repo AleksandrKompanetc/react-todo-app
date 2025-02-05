@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import { AiOutlinePlus } from 'react-icons/ai'
-import Todo from './Todo'
+import Todo from '../Components/Todo'
 
 const style = {
   bg: `h-screen w-screen p-4 bg-gradient-to-r from-[#2F80ED] to-[#1CB5E0]`,
@@ -11,7 +11,7 @@ const style = {
   button: ``
 }
 
-const Todo = () => {
+const TodoApp = () => {
   const [todos, setTodos] = useState(['Learn React', 'Grint Leetcode'])
 
   return (
@@ -30,4 +30,4 @@ const Todo = () => {
   )
 }
 
-export default Todo
+export default TodoApp
