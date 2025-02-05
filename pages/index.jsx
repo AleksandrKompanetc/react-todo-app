@@ -23,7 +23,9 @@ const TodoApp = () => {
           <button className={style.button}><AiOutlinePlus size={30} /></button>
         </form>
         <ul>
-          <Todo />
+          {todos.map((todo, index) => (
+            <Todo key={index} todo={todo} />
+          ))}
         </ul>
       </div>
     </div>
