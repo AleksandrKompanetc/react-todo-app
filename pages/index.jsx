@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import { AiOutlinePlus } from 'react-icons/ai'
 import Todo from '../Components/Todo'
 import { db } from '@/lib/firebase';
-import {query, collection, onSnapshot, updateDoc, doc} from 'firebase/firestore'
+import {query, collection, onSnapshot, updateDoc, doc, addDoc} from 'firebase/firestore'
 
 const style = {
   bg: `h-screen w-screen p-4 bg-gradient-to-r from-[#2F80ED] to-[#1CB5E0]`,
@@ -20,6 +20,15 @@ const TodoApp = () => {
 
   const createTodo = async (e) => {
     e.preventDefault(e)
+    if (input === '') {
+      alert('Please, enter a valid todo')
+      return
+    }
+    await addDoc(collection(db, 'todos'), {
+      text: input,
+      completed: false,
+    })
+    setInput('')
   }
 
   useEffect(() => {
@@ -45,7 +54,7 @@ const TodoApp = () => {
       <div className={style.container}>
         <h3 className={style.heading}>Todo App</h3>
         <form onSubmit={createTodo} className={style.form}>
-          <input className={style.input} type="text" placeholder='Add Todo' />
+          <input value={input} onChange={(e) => setInput(e.target.value)} className={style.input} type="text" placeholder='Add Todo' />
           <button className={style.button}><AiOutlinePlus size={30} /></button>
         </form>
         <ul>
