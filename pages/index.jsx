@@ -16,6 +16,11 @@ const style = {
 
 const TodoApp = () => {
   const [todos, setTodos] = useState([])
+  const [input, setInput] = useState('')
+
+  const createTodo = async (e) => {
+    e.preventDefault(e)
+  }
 
   useEffect(() => {
     const q = query(collection(db, 'todos'))
@@ -39,7 +44,7 @@ const TodoApp = () => {
     <div className={style.bg}>
       <div className={style.container}>
         <h3 className={style.heading}>Todo App</h3>
-        <form className={style.form}>
+        <form onSubmit={createTodo} className={style.form}>
           <input className={style.input} type="text" placeholder='Add Todo' />
           <button className={style.button}><AiOutlinePlus size={30} /></button>
         </form>
